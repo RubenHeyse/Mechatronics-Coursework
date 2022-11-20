@@ -1,0 +1,9 @@
+The task of this program is to do as follows: 
+- Read the drawing instructions from an ASCII text file, specified by the user.
+- Relate the instructions given, to the stored shape stroke data from ShapeStrokeData.txt.
+- Generate the G-Code required to draw the shapes defined in the instructions file.
+- Send the required G-Code to the robot to initialise its state.
+- Send the G-Code of the required shapes to the robot.
+
+
+Upon completion of the drawing, the pen should finish in the pen-up position. Furthermore, when the multiple drawig instruction files are given by the user, these should all be drawn in the same grid. As such, the pen should reset to (0,0), so as to re-index itself.
