@@ -1,6 +1,6 @@
 grid > struct
-    cell_x_length   > float
-    cell_y_length   > float
+    cell_width_mm   > float
+    cell_height_mm  > float
     cell_x_count    > int
     cell_y_count    > int
 
@@ -11,17 +11,16 @@ cell > struct array https://www.javatpoint.com/array-of-structures-in-c
 
 shape > struct array 
     name                    > string
-    drawing_instructions    > struct array [
-        {
-            x_pos   > int
-            y_pos   > int
-            pen_pos > int
-        }
+    drawing_instructions    > struct array
+        x_pos   > int
+        y_pos   > int
+        pen_pos > int
     ]
 
-scaled_shape_width  > const
-shepe_width_in_file > const
-shape_scale_factor  > float
-shape_file_data     > string https://www.tutorialspoint.com/cprogramming/c_strings.htm
-
+scaled_shape_width_mm           > const
+shape_point_width               > const
+shape_scale_factor              > float
+shape_file_data                 > string https://www.tutorialspoint.com/cprogramming/c_strings.htm
 drawing_instructions_filename   > string
+g_code_instruction              > string
+shape_file_name                 > string
