@@ -1,0 +1,23 @@
+initialise_robot
+    Params
+        void
+    Return
+        void
+
+initialise_grid
+    Params
+        void
+    Return
+        void
+
+initialise_cells
+    Params
+        *cell_height_mm
+        *cell_width_mm
+        *scaled_shape_width_mm
+    Return
+        void
+
+define_shapes
+
+generate_g_code
