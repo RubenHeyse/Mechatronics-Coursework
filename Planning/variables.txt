@@ -3,6 +3,8 @@ grid > struct
     cell_height_mm  > float
     cell_x_count    > int
     cell_y_count    > int
+    total_width     > float
+    total_height    > float
 
 cell > struct array https://www.javatpoint.com/array-of-structures-in-c
     x_pos               > float
