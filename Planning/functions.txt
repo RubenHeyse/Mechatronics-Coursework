@@ -14,6 +14,7 @@ initialise_cells
     Params
         *grid
         *cell
+        scaled_shape_width_mm
     Return
         success -> int
 
