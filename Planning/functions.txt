@@ -8,26 +8,26 @@ initialise_grid
     Params
         *grid
     Return
-        void
+        success -> int
 
 initialise_cells
     Params
         *grid
         *cell
     Return
-        void
+        success -> int
 
 define_shapes
     Params
         *shape_file_data
         *shape
     Return  
-        void
+        success -> int
 
 generate_g_code
     Params
         *shape
         *cell
         *grid
-    Return > Char
-        g_code_instruction
+    Return 
+        g_code_instruction -> char
