@@ -1,33 +1,33 @@
 initialise_robot
-Params
-void
-Return
-void
+    Params
+        void
+    Return
+        void
 
 initialise_grid 
-Params
-*grid
-Return
-void
+    Params
+        *grid
+    Return
+        void
 
 initialise_cells
-Params
-*grid
-*cell
-Return
-void
+    Params
+        *grid
+        *cell
+    Return
+        void
 
 define_shapes
-Params
-*shape_file_data
-*shape
-Return  
-void
+    Params
+        *shape_file_data
+        *shape
+    Return  
+        void
 
 generate_g_code
-Params
-*shape
-*cell
-*grid
-Return > Char
-g_code_instruction
+    Params
+        *shape
+        *cell
+        *grid
+    Return > Char
+        g_code_instruction
