@@ -1,15 +1,14 @@
 grid > struct
-    cell_width_mm   > float
-    cell_height_mm  > float
+    cell_width_mm   > int
+    cell_height_mm  > int
     cell_x_count    > int
     cell_y_count    > int
-    total_width     > float
-    total_height    > float
+    total_width_mm  > int
+    total_height_mm > int
 
 cell > struct array https://www.javatpoint.com/array-of-structures-in-c
-    x_pos               > float
-    y_pos               > float
-    shape_local_origin  > float
+    global_origin       > array
+    shape_local_origin  > array
 
 shape > struct array 
     name                    > string
@@ -22,7 +21,8 @@ shape > struct array
 scaled_shape_width_mm           > const
 shape_point_width               > const
 shape_scale_factor              > float
+shape_file_name                 > string
 shape_file_data                 > string https://www.tutorialspoint.com/cprogramming/c_strings.htm
 drawing_instructions_filename   > string
+drawing_instructions            > string
 g_code_instruction              > string
-shape_file_name                 > string

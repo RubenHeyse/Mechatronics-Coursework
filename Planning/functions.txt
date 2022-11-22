@@ -4,9 +4,9 @@ initialise_robot
     Return
         void
 
-initialise_grid
+initialise_grid 
     Params
-        void
+        *grid
     Return
         void
 
