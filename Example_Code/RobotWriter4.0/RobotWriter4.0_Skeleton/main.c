@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 // #include <curses.h>
-#include <windows.h>
+// #include <windows.h>
 #include "rs232.h"
 #include "serial.h"
 
