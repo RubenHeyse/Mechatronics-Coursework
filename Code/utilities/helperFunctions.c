@@ -1,75 +1,26 @@
-#include<stdio.h> 
-#include<stdarg.h>    
-#include "helperFunctions.h"
+// #include <stdarg.h>
+// #include <stdio.h>
 
-void DEBUG(char* format,...) 
-{ 
-    char *traverse; 
-    unsigned int i; 
-    char *s; 
+// #include "libioP.h"
 
-    //Module 1: Initializing Myprintf's arguments 
-    va_list arg;
-    va_start(arg, format); 
+// #undef printf
+// /* Write formatted output to stdout from the format string FORMAT.  */
+// /* VARARGS1 */
+// int 
+// #include "helperFunctions.h"
 
-    for(traverse = format; *traverse != '\0'; traverse++) 
-    { 
-        while( *traverse != '%' ) 
-        { 
-            putchar(*traverse);
-            traverse++; 
-        } 
+// int DEBUG(char *debugState, char* format,...) 
+// { 
+//     if (debugState){
+//         va_list arg;
+//   int done;
+//   va_start (arg, format);
+//   done = __vfprintf_internal (stdout, format, arg, 0);
+//   va_end (arg);
+//   return done;
+//     }
+// } 
 
-        traverse++; 
-
-        //Module 2: Fetching and executing arguments
-        switch(*traverse) 
-        { 
-            case 'c' : i = va_arg(arg,int);     //Fetch char argument
-                        putchar(i);
-                        break; 
-
-            case 'd' : i = va_arg(arg,int);         //Fetch Decimal/Integer argument
-                        if(i<0) 
-                        { 
-                            i = -i;
-                            putchar('-'); 
-                        } 
-                        puts(convert(i,10));
-                        break; 
-
-            case 'o': i = va_arg(arg,unsigned int); //Fetch Octal representation
-                        puts(convert(i,8));
-                        break; 
-
-            case 's': s = va_arg(arg,char *);       //Fetch string
-                        puts(s); 
-                        break; 
-
-            case 'x': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-                        puts(convert(i,16));
-                        break; 
-        }   
-    } 
-
-    //Module 3: Closing argument list to necessary clean-up
-    va_end(arg); 
-} 
-
-char *convert(unsigned int num, int base) 
-{ 
-    static char Representation[]= "0123456789ABCDEF";
-    static char buffer[50]; 
-    char *ptr; 
-
-    ptr = &buffer[49]; 
-    *ptr = '\0'; 
-
-    do 
-    { 
-        *--ptr = Representation[num%base]; 
-        num /= base; 
-    }while(num != 0); 
-
-    return(ptr); 
-}
+// #undef _IO_printf
+// ldbl_strong_alias (__printf, printf);
+// ldbl_strong_alias (__printf, _IO_printf);
