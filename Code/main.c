@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
-// #include <curses.h>
+// #include <conio.h>
+#include <curses.h>
 // #include <windows.h>
 #include "utilities/rs232.h"
 #include "utilities/serial.h"
 #include "utilities/helperFunctions.h"
 
 #define bdrate 115200               /* 115200 baud */
+
+#define debugState 1
 
 void SendCommands (char *buffer );
 
@@ -29,7 +31,7 @@ int main()
     sprintf (buffer, "\n");
     // printf ("Buffer to send: %s", buffer); // For diagnostic purposes only, normally comment out
     PrintBuffer (&buffer[0]);
-    Sleep(100);
+    sleep(100);
 
     // This is a special case - we wait  until we see a dollar ($)
     WaitForDollar();
@@ -79,6 +81,6 @@ void SendCommands (char *buffer )
     // printf ("Buffer to send: %s", buffer); // For diagnostic purposes only, normally comment out
     PrintBuffer (&buffer[0]);
     WaitForReply();
-    Sleep(100); // Can omit this when using the writing robot but has minimal effect
+    sleep(100); // Can omit this when using the writing robot but has minimal effect
     // getch(); // Omit this once basic testing with emulator has taken place
 }
