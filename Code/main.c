@@ -5,13 +5,48 @@
 // #include <windows.h>
 #include "utilities/rs232.h"
 #include "utilities/serial.h"
-#include "utilities/helperFunctions.h"
+// #include "utilities/helperFunctions.h"
+#include "main.h"
 
-#define bdrate 115200               /* 115200 baud */
+void Initialise_Cells(){
 
-#define debugState 1
+    CELL *cell_array;
 
-void SendCommands (char *buffer );
+    int cell_count = grid_cell_x_count*grid_cell_y_count;
+
+    // call malloc to allocate that appropriate number of bytes for the array
+    cell_array = (CELL *)malloc(sizeof(cell_count * sizeof(CELL))); 
+
+    if(cell_array == NULL) {
+      fprintf(stderr, "Memory Allocation Error: %s\n", strerror( errno ));    
+    }
+
+    int cell_index = 0;
+
+    float shape_padding = (grid_cell_width_mm - scaled_shape_width_mm)/2;
+
+    for (int x=0; x<grid_cell_x_count; x++){
+        for (int y=0; y<grid_cell_y_count; y++){
+            cell_array[cell_index].global_origin[0] = grid_cell_width_mm * x;
+            cell_array[cell_index].global_origin[1] = grid_cell_height_mm * y;
+            cell_array[cell_index].shape_local_origin[0] = grid_cell_width_mm * x + shape_padding;
+            cell_array[cell_index].shape_local_origin[1] = grid_cell_height_mm * y + shape_padding;
+            cell_index++;
+
+            #ifdef debugState
+                printf("Global coordinates [%d, %d]", 
+                    cell_array[cell_index].global_origin[0], 
+                    cell_array[cell_index].global_origin[1]
+                );
+
+                printf("Shape local coordinates [%d, %d]", 
+                    cell_array[cell_index].shape_local_origin[0], 
+                    cell_array[cell_index].shape_local_origin[1]
+                );
+            #endif
+        }
+    }
+}
 
 int main()
 {
@@ -25,26 +60,11 @@ int main()
     }
 
     // Time to wake up the robot
-    printf ("\nAbout to wake up the robot\n");
+    Wakeup_Robot(&buffer[0]);
 
-    // We do this by sending a new-line
-    sprintf (buffer, "\n");
-    // printf ("Buffer to send: %s", buffer); // For diagnostic purposes only, normally comment out
-    PrintBuffer (&buffer[0]);
-    sleep(100);
+    Initialise_Robot(&buffer[0]);
 
-    // This is a special case - we wait  until we see a dollar ($)
-    WaitForDollar();
-
-    printf ("\nThe robot is now ready to draw\n");
-
-    //These commands get the robot into 'ready to draw mode' and need to be sent before any writing commands
-    sprintf (buffer, "G1 X0 Y0 F1000\n");
-    SendCommands(buffer);
-    sprintf (buffer, "M3\n");
-    SendCommands(buffer);
-    sprintf (buffer, "S0\n");
-    SendCommands(buffer);
+    Initialise_Cells();
 
     // These are sample commands to draw out some information - these are the ones you will be generating.
     sprintf (buffer, "G0 X-13.41849 Y0.000\n");
@@ -83,4 +103,35 @@ void SendCommands (char *buffer )
     WaitForReply();
     sleep(100); // Can omit this when using the writing robot but has minimal effect
     // getch(); // Omit this once basic testing with emulator has taken place
+}
+
+//These commands get the robot into 'ready to draw mode' and need to be sent before any writing commands
+
+void InitialiseRobot (char *buffer){
+    sprintf (buffer, "G1 X0 Y0 F1000\n");
+    SendCommands(buffer);
+    sprintf (buffer, "M3\n");
+    SendCommands(buffer);
+    sprintf (buffer, "S0\n");
+    SendCommands(buffer);
+}
+
+void Wakeup_Robot(char *buffer){
+    printf ("\nAbout to wake up the robot\n");
+
+    // We do this by sending a new-line
+    sprintf (buffer, "\n");
+
+    #ifdef debugState
+        printf ("Buffer to send: %s", buffer);
+    #endif
+
+    PrintBuffer(&buffer[0]);
+    
+    sleep(100);
+
+    // This is a special case - we wait  until we see a dollar ($)
+    WaitForDollar();
+
+    printf ("\nThe robot is now ready to draw\n");
 }

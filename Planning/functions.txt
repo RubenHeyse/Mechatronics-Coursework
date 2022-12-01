@@ -1,6 +1,6 @@
 initialise_robot
     Params
-        void
+        *buffer
     Return
         void
 

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "curses.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "helperfunctions.h": "c"
     }
 }
