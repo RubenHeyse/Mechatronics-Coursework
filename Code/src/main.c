@@ -1,12 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-// #include <conio.h>
-#include <curses.h>
-// #include <windows.h>
-#include "utilities/rs232.h"
-#include "utilities/serial.h"
-// #include "utilities/helperFunctions.h"
-#include "main.h"
+#include "../include/main.h"
 
 void Initialise_Cells(){
 
@@ -107,7 +99,7 @@ void SendCommands (char *buffer )
 
 //These commands get the robot into 'ready to draw mode' and need to be sent before any writing commands
 
-void InitialiseRobot (char *buffer){
+void Initialise_Robot (char *buffer){
     sprintf (buffer, "G1 X0 Y0 F1000\n");
     SendCommands(buffer);
     sprintf (buffer, "M3\n");

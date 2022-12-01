@@ -1,12 +1,18 @@
 #include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <curses.h>
+#include "../include/rs232.h"
+#include "../include/serial.h"
+
 extern int errno;
 
 #define bdrate 115200               /* 115200 baud */
 #define debugState 1
 
 void Wakeup_Robot(char *buffer);
-void SendCommands (char *buffer);
-void Initialise_Robot (char *buffer);
+void SendCommands(char *buffer);
+void Initialise_Robot(char *buffer);
 
 #define grid_cell_width_mm  30
 #define grid_cell_height_mm 30

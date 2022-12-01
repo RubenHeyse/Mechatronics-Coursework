@@ -3,8 +3,8 @@
 // #include <conio.h>
 #include <curses.h>
 
-#include "serial.h"
-#include "rs232.h"
+#include "../include/serial.h"
+#include "../include/rs232.h"
 
  #define Serial_Mode
 
@@ -72,7 +72,7 @@ int WaitForDollar (void)
                 return 0;
         }
 
-        Sleep(100);
+        sleep(100);
     }
 
     return(0);
@@ -109,7 +109,7 @@ int WaitForReply (void)
                 return 0;
         }
 
-        Sleep(100);
+        sleep(100);
     }
 
     return(0);
