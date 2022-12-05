@@ -30,9 +30,15 @@ void SendCommands(char *buffer);
 int initialise_robot(char *buffer);
 int initialise_cells(CELL *cell_array);
 
+typedef struct INSTRUCTION {
+    int x;
+    int y;
+    int pen_enabled;
+} INSTRUCTION;
+
 typedef struct SHAPE{
     char name[20];
-    int instructions[10][10][10];
+    int instructions[];
 } SHAPE;
 
 #define scaled_shape_width_mm   20   
