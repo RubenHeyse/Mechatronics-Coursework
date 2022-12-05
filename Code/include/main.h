@@ -4,6 +4,7 @@
 #include <curses.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #include "../include/rs232.h"
 #include "../include/serial.h"
@@ -11,7 +12,7 @@
 extern int errno;
 
 #define bdrate 115200               /* 115200 baud */
-#define debugState 1
+#define debugState
 
 #define grid_cell_width_mm  30
 #define grid_cell_height_mm 30
@@ -24,9 +25,9 @@ typedef struct CELL{
     int shape_local_origin[2];
 } CELL;
 
-void wakeup_robot(char *buffer);
+int wakeup_robot(char *buffer);
 void SendCommands(char *buffer);
-void initialise_robot(char *buffer);
+int initialise_robot(char *buffer);
 int initialise_cells(CELL *cell_array);
 
 typedef struct SHAPE{
