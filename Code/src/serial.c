@@ -6,7 +6,7 @@
 #include "../include/serial.h"
 #include "../include/rs232.h"
 
- #define Serial_Mode
+//  #define Serial_Mode
 
 #ifdef Serial_Mode   // Code for running with robot
 
