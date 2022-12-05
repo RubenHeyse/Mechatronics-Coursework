@@ -115,8 +115,6 @@ int wakeup_robot(char *buffer){
 
 int initialise_cells(CELL *cell_array){
 
-    
-
     int cell_count = grid_cell_x_count*grid_cell_y_count;
 
     // call malloc to allocate that appropriate number of bytes for the array
@@ -196,11 +194,13 @@ int parse_shape_file(char shape_file_path[255], SHAPE *shape_array){
     const unsigned MAX_LENGTH = 30;
     char line_buffer[MAX_LENGTH];
 
-    int first_line = true;
-    int shape_count = 0;
+    int first_line = true,
+        shape_count = 0,
+        current_shape = 0,
+        instruction_line_count = 0,
+        instruction_1, instruction_2, instruction_3;
+
     char shape_name[20];
-    int current_shape = 0;
-    int instruction_line_count = 0;
 
     while (fgets(line_buffer, MAX_LENGTH, shape_file_data)) {
 
@@ -230,13 +230,19 @@ int parse_shape_file(char shape_file_path[255], SHAPE *shape_array){
             if (isalpha(line_buffer[0])){
                 sscanf(line_buffer, "%19s %d", shape_name, &instruction_line_count);
                 strcpy(shape_array[current_shape].name, shape_name);
-                current_shape++;
+
+                
 
                 #ifdef DEBUG_MODE
-                    printf("shape name: %s\n", shape_name);
-                    printf("instrucion line count: %d\n", instruction_line_count);
+                    printf("\nshape name: %s\n", shape_name);
+                    printf("instrucion line count: %d\n\n", instruction_line_count);
                 #endif
+
+                current_shape++;
             }
+
+            sscanf(line_buffer, "%d %d %d", &instruction_1, &instruction_2, &instruction_3);
+
             
         }
     }
