@@ -97,7 +97,7 @@ int wakeup_robot(char *buffer){
     // We do this by sending a new-line
     sprintf (buffer, "\n");
 
-    #ifdef debugState
+    #ifdef DEBUG_MODE
         printf ("Buffer to send: %s", buffer);
     #endif
 
@@ -148,7 +148,7 @@ int initialise_cells(CELL *cell_array){
             memcpy(&cell_array[cell_index].shape_local_origin[0], &shape_x_pos, sizeof(int));
             memcpy(&cell_array[cell_index].shape_local_origin[1], &shape_y_pos, sizeof(int));
 
-            #ifdef debugState
+            #ifdef DEBUG_MODE
                 printf("---------CELL %d---------\n", cell_index);
                 printf("x = %d\n", x);
                 printf("x pos: %d\n", cell_x_pos);
@@ -182,7 +182,7 @@ int parse_shape_file(char shape_file_path[255], SHAPE *shape_array){
     
     shape_file_data = fopen(shape_file_path, "r");
 
-    #ifdef debugState
+    #ifdef DEBUG_MODE
         printf("File opened from: %s\n", shape_file_path);
     #endif
 
@@ -204,7 +204,7 @@ int parse_shape_file(char shape_file_path[255], SHAPE *shape_array){
 
     while (fgets(line_buffer, MAX_LENGTH, shape_file_data)) {
 
-        #ifdef debugState
+        #ifdef DEBUG_MODE
             printf("line buffer: %s", line_buffer);
         #endif
 
@@ -214,7 +214,7 @@ int parse_shape_file(char shape_file_path[255], SHAPE *shape_array){
             // call malloc to allocate that appropriate number of bytes for the array
             shape_array = (SHAPE *)calloc(shape_count, sizeof(SHAPE)); 
 
-            #ifdef debugState
+            #ifdef DEBUG_MODE
                 printf("shape count: %d\n", shape_count);
             #endif
 
@@ -232,13 +232,11 @@ int parse_shape_file(char shape_file_path[255], SHAPE *shape_array){
                 strcpy(shape_array[current_shape].name, shape_name);
                 current_shape++;
 
-                #ifdef debugState
+                #ifdef DEBUG_MODE
                     printf("shape name: %s\n", shape_name);
                     printf("instrucion line count: %d\n", instruction_line_count);
                 #endif
             }
-            
-            
             
         }
     }

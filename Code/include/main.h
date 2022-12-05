@@ -12,7 +12,7 @@
 extern int errno;
 
 #define bdrate 115200               /* 115200 baud */
-#define debugState
+#define DEBUG_MODE
 
 #define grid_cell_width_mm  30
 #define grid_cell_height_mm 30
