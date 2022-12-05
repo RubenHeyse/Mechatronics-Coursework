@@ -36,13 +36,15 @@ EXECUTABLE = ../build/main
 # deleting dependencies appended to the file from 'make depend'
 #
 
+LINKERS = curses
+
 .PHONY: depend clean
 
 all:	$(EXECUTABLE)
 	@echo  Program compiled 
 
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(EXECUTABLE) $(OBJECTS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(EXECUTABLE) $(OBJECTS) -l$(LINKERS)
 
 # this is a suffix replacement rule for building .o's from .c's
 # it uses automatic variables $<: the name of the prerequisite of
