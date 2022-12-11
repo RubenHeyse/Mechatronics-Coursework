@@ -13,10 +13,10 @@ CFLAGS = -Wall -g
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I ../include
+INCLUDES = -I ./include
 
 # define the C source files
-SOURCES=$(wildcard *.c)
+SOURCES=$(wildcard src/*.c)
 
 # define the C object files 
 #
@@ -29,14 +29,14 @@ SOURCES=$(wildcard *.c)
 OBJECTS = $(SOURCES:.c=.o)
 
 # define the executable file 
-EXECUTABLE = ../build/main
+EXECUTABLE = build/main
 #
 # The following part of the makefile is generic; it can be used to 
 # build any executable just by changing the definitions above and by
 # deleting dependencies appended to the file from 'make depend'
 #
 
-LINKERS = curses
+# LINKERS = curses
 
 .PHONY: depend clean
 
