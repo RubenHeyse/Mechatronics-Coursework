@@ -36,7 +36,7 @@ EXECUTABLE = build/main
 # deleting dependencies appended to the file from 'make depend'
 #
 
-# LINKERS = curses
+LINKERS = curses
 
 .PHONY: depend clean
 

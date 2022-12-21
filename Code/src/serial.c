@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
-// #include <curses.h>
+// #include <conio.h>
+#include <curses.h>
 
 #include "../include/serial.h"
 #include "../include/rs232.h"
