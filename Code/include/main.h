@@ -9,8 +9,6 @@
 #include "../include/rs232.h"
 #include "../include/serial.h"
 
-extern int errno;
-
 #define bdrate 115200               /* 115200 baud */
 #define DEBUG_MODE
 
@@ -30,19 +28,13 @@ void SendCommands(char *buffer);
 int initialise_robot(char *buffer);
 int initialise_cells(CELL *cell_array);
 
-typedef struct INSTRUCTION {
-    int x;
-    int y;
-    int pen_enabled;
-} INSTRUCTION;
-
 typedef struct SHAPE{
-    char name[20];
-    int instructions[];
+    char name[40];
+    int instruction_count;
+    int instructions[50][3];
 } SHAPE;
 
 #define scaled_shape_width_mm   20   
 #define shape_point_width       16
 
-int parse_shape_file(char *shape_file_path, SHAPE *shape_array);
-int define_shapes();
+int parse_shape_file(char *shape_file_path, SHAPE *shape_array, int *shape_count);
